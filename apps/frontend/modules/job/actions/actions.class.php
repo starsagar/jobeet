@@ -10,22 +10,40 @@
  */
 class jobActions extends sfActions
 {
-  public function executeSearch(sfWebRequest $request)
-  {
-    $this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
+      public function executeSearch(sfWebRequest $request)
+      {
+      $this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
 
-    $this->jobs = Doctrine_Core::getTable('JobeetJob') ->getForLuceneQuery($query);
+      $this->jobs = Doctrine_Core::getTable('JobeetJob') ->getForLuceneQuery($query);
 
-    if ($request->isXmlHttpRequest())
-    {
+      if ($request->isXmlHttpRequest())
+      {
       if ('*' == $query || !$this->jobs)
       {
         return $this->renderText('No results');
       }
 
       return $this->renderPartial('job/list', array('jobs' => $this->jobs));
-    }
-  }
+      }
+      }
+
+      public function executeSearch(sfWebRequest $request)
+      {
+      $this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
+
+      $this->jobs = Doctrine_Core::getTable('JobeetJob') ->getForLuceneQuery($query);
+
+      if ($request->isXmlHttpRequest())
+      {
+        if ('*' == $query || !$this->jobs)
+        {
+          return $this->renderText('No results');
+        }
+
+        return $this->renderPartial('job/list', array('jobs' => $this->jobs));
+      }
+      }
+
 
   public function executeIndex(sfWebRequest $request)
   {

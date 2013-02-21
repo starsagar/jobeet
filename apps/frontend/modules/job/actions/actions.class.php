@@ -45,21 +45,19 @@ class jobActions extends sfActions
       }
 
 
+
+
   public function executeIndex(sfWebRequest $request)
   {
-    if (!$request->getParameter('sf_culture'))
+    if(!$request->getParameter('sf_culture'))
     {
-      if ($this->getUser()->isFirstRequest())
-      {
+      if($this->getUser()->isFirstRequest()){
         $culture = $request->getPreferredCulture(array('en', 'fr'));
         $this->getUser()->setCulture($culture);
         $this->getUser()->isFirstRequest(false);
-      }
-      else
-      {
+      }else{
         $culture = $this->getUser()->getCulture();
       }
-
       $this->redirect('localized_homepage');
     }
     
@@ -132,6 +130,61 @@ class jobActions extends sfActions
 
     $this->getUser()->setFlash('notice', sprintf('Your job validity has been extend until %s', $job->getDateTimeObject('expires_at')->format('m/d/Y')));
     $this->redirect('job_show_user', $job);
+  }
+
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind(
+            $request->getParameter($form->getName()),
+            $request->getFiles($form->getName())
+    );
+
+    if ($form->isValid())
+    {
+      $job = $form->save();
+      $this->redirect('job_show', $job);
+    }
+  }
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind(
+            $request->getParameter($form->getName()),
+            $request->getFiles($form->getName())
+    );
+
+    if ($form->isValid())
+    {
+      $job = $form->save();
+      $this->redirect('job_show', $job);
+    }
+  }
+
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind(
+            $request->getParameter($form->getName()),
+            $request->getFiles($form->getName())
+    );
+
+    if ($form->isValid())
+    {
+      $job = $form->save();
+      $this->redirect('job_show', $job);
+    }
+  }
+
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind(
+            $request->getParameter($form->getName()),
+            $request->getFiles($form->getName())
+    );
+
+    if ($form->isValid())
+    {
+      $job = $form->save();
+      $this->redirect('job_show', $job);
+    }
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

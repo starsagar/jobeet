@@ -14,7 +14,7 @@
     <?php include_stylesheets() ?>
   </head>
   <body>
-    <div id="container" class="test123">
+    <div style="" class="test123" id="container">
       <div id="header">
         <div class="content">
           <h1><a href="<?php echo url_for('@homepage') ?>">

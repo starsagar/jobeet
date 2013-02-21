@@ -2,7 +2,7 @@
 <?php use_javascripts_for_form($form) ?>
 
 <?php echo form_tag_for($form, '@job') ?>
-  <table id="job_form">
+  <table id="job_form" class= "myclass">
     <tfoot>
       <tr>
         <td colspan="2">
@@ -10,8 +10,12 @@
         </td>
       </tr>
     </tfoot>
+    <span class="testclass">tttttttttttttttttttttttttttttttttttttttt</span>
     <tbody>
-      <?php echo $form ?>
+      <?php echo "hello am here".$form ?>
     </tbody>
   </table>
 </form>
+<div>
+  testing my data 
+</div>
